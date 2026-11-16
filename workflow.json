@@ -1,0 +1,24 @@
+{
+  "iterations": 5,
+  "steps": [
+    {
+      "type": "screenshot",
+      "left": 31,
+      "top": 142,
+      "width": 518,
+      "height": 102
+    },
+    {
+      "type": "wait",
+      "seconds": 0.5
+    },
+    {
+      "type": "key",
+      "keys": "enter"
+    },
+    {
+      "type": "wait",
+      "seconds": 0.5
+    }
+  ]
+}
