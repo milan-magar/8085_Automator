@@ -1,0 +1,319 @@
+8085 PROGRAMS (MACHINE CODE FORMAT - STANDARDIZED ADDRESSES)
+================================================================================
+
+1. Program to add two 8-bit numbers.
+Statement: Add numbers from memory location 8000H & 8001H and store result in memory location 8050H.
+Input:
+8000H: 45 53
+Command:
+9001H: 3A 01 80 47 3A 00 80 80 32 50 80 76
+Output:
+8050H: 98
+
+--------------------------------------------------------------------------------
+
+2. Program to subtract two 8-bit numbers.
+Statement: Subtract numbers from memory location 8000H & 8001H and store result in memory location 8050H.
+Input:
+8000H: 65 53
+Command:
+9001H: 3A 01 80 47 3A 00 80 90 32 50 80 76
+Output:
+8050H: 12
+
+--------------------------------------------------------------------------------
+
+3. Program to find 1's complement of a number.
+Statement: Input number from memory location 8000H and store result in memory location 8050H.
+Input:
+8000H: 12
+Command:
+9001H: 3A 00 80 2F 32 50 80 76
+Output:
+8050H: ED
+
+--------------------------------------------------------------------------------
+
+4. Program to find 2's complement of a number.
+Statement: Input number from memory location 8000H and store result in memory location 8050H.
+Input:
+8000H: 12
+Command:
+9001H: 3A 00 80 2F C6 01 32 50 80 76
+Output:
+8050H: EE
+
+--------------------------------------------------------------------------------
+
+5. Program to right shift 8-bit numbers.
+Statement: Shift an eight-bit data four bits right. Data is in memory location 8000H. Store result in memory location 8050H.
+Input:
+8000H: 40
+Command:
+9001H: 3A 00 80 1F 1F 1F 1F 32 50 80 76
+Output:
+8050H: 04
+
+--------------------------------------------------------------------------------
+
+6. Program to left shift 8-bit numbers.
+Statement: Shift an eight-bit data four bits left. Data is in memory location 8000H. Store result in memory location 8050H.
+Input:
+8000H: 04
+Command:
+9001H: 3A 00 80 17 17 17 17 32 50 80 76
+Output:
+8050H: 40
+
+--------------------------------------------------------------------------------
+
+7. Program to add two 16-bit numbers.
+Statement: Add numbers 1124H & 2253H and store result in memory location 8050H & 8051H.
+Input:
+8000H:
+Command:
+9001H: 21 24 11 11 53 22 7D 83 6F 7C 8A 67 22 50 80 76
+Output:
+8050H: 77 33
+
+--------------------------------------------------------------------------------
+
+8. Program to add two 16-bit numbers.
+Statement: Input first number from memory location 8000H & 8001H and second number from memory location 8002H & 8003H and store result in memory location 8050H & 8051H.
+Input:
+8000H: 33 45 24 34
+Command:
+9001H: 2A 02 80 EB 2A 00 80 7D 83 6F 7C 8A 67 22 50 80 76
+Output:
+8050H: 57 79
+
+--------------------------------------------------------------------------------
+
+9. Program to subtract two 16-bit numbers.
+Statement: Subtract number 1234H from 4897H and store result in memory location 8050H & 8051H.
+Input:
+8000H:
+Command:
+9001H: 21 97 48 11 34 12 7D 93 6F 7C 9A 67 22 50 80 76
+Output:
+8050H: 63 36
+
+--------------------------------------------------------------------------------
+
+10. Program to subtract two 16-bit numbers.
+Statement: Input first number from memory location 8000H & 8001H and second number from memory location 8002H & 8003H and store result in memory location 8050H & 8051H.
+Input:
+8000H: 78 45 24 34
+Command:
+9001H: 2A 02 80 EB 2A 00 80 7D 93 6F 7C 9A 67 22 50 80 76
+Output:
+8050H: 54 11
+
+--------------------------------------------------------------------------------
+
+11. Program to multiply two 8-bit numbers.
+Statement: Multiply 06 and 03 and store result in memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 3E 00 06 06 0E 03 80 0D C2 07 90 32 50 80 76
+Output:
+8050H: 12
+
+--------------------------------------------------------------------------------
+
+12. Program to divide two 8-bit numbers.
+Statement: Divide 08H and 03H and store quotient in memory location 8050H and remainder in memory location 8051H.
+Input:
+8000H:
+Command:
+9001H: 3E 08 06 03 0E 00 B8 DA 11 90 90 0C C3 07 90 32 51 80 79 32 50 80 76
+Output:
+8050H: 02 02
+
+--------------------------------------------------------------------------------
+
+13. Program to find greatest among two 8-bit numbers.
+Statement: Input numbers from memory location 8000H & 8001H and store greatest number in memory location 8050H.
+Input:
+8000H: 25 48
+Command:
+9001H: 3A 01 80 47 3A 00 80 B8 D2 0D 90 78 32 50 80 76
+Output:
+8050H: 48
+
+--------------------------------------------------------------------------------
+
+14. Program to find smallest among two 8-bit numbers.
+Statement: Input numbers from memory location 8000H & 8001H and store smallest number in memory location 8050H.
+Input:
+8000H: 25 48
+Command:
+9001H: 3A 01 80 47 3A 00 80 B8 DA 0D 90 78 32 50 80 76
+Output:
+8050H: 25
+
+--------------------------------------------------------------------------------
+
+15. Program to find whether a number is odd or even.
+Statement: Input number from memory location 8000H and store result in 8050H (0EH for Even, 0DH for Odd).
+Input:
+8000H: 04
+Command:
+9001H: 3A 00 80 E6 01 CA 0E 90 3E 0D C3 10 90 3E 0E 32 50 80 76
+Output:
+8050H: 0E
+
+--------------------------------------------------------------------------------
+
+16. Program to count no. of 1's in given number.
+Statement: Input number from memory location 8000H and store result in 8050H.
+Input:
+8000H: 07
+Command:
+9001H: 3A 00 80 0E 08 06 00 1F D2 0C 90 04 0D C2 08 90 78 32 50 80 76
+Output:
+8050H: 03
+
+--------------------------------------------------------------------------------
+
+17. Display number from 1 to 10.
+Statement: Store numbers from 1 to 10 starting at memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 21 50 80 06 01 0E 0A 70 23 04 0D C2 08 90 76
+Output:
+8050H: 01 02 03 04 05 06 07 08 09 0A
+
+--------------------------------------------------------------------------------
+
+18. Find sum of numbers from 1 to 10.
+Statement: Calculate the sum of numbers from 1 to 10 and store the result in memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 06 01 0E 0A 3E 00 80 04 0D C2 07 90 32 50 80 76
+Output:
+8050H: 37
+
+--------------------------------------------------------------------------------
+
+19. Display all odd numbers from 1 to 10.
+Statement: Store all odd numbers from 1 to 10 starting at memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 21 50 80 06 01 0E 0A 70 23 04 04 0D 0D C2 08 90 76
+Output:
+8050H: 01 03 05 07 09
+
+--------------------------------------------------------------------------------
+
+20. Display all even numbers from 1 to 20.
+Statement: Store all even numbers from 1 to 20 starting at memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 21 50 80 06 02 0E 14 70 23 04 04 0D 0D C2 08 90 76
+Output:
+8050H: 02 04 06 08 0A 0C 0E 10 12 14
+
+--------------------------------------------------------------------------------
+
+21. Display all even numbers from 10 to 50.
+Statement: Store all even numbers from 10 to 50 starting at memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 21 50 80 06 0A 0E 2A 70 23 04 04 0D 0D C2 08 90 76
+Output:
+8050H: 0A 0C 0E ... 32
+
+--------------------------------------------------------------------------------
+
+22. Find sum of 10 numbers in array.
+Statement: Find the sum of 10 numbers stored starting at memory location 8000H and store result at 8050H.
+Input:
+8000H: 01 02 03 04 05 06 07 08 09 0A
+Command:
+9001H: 21 00 80 0E 0A 3E 00 46 80 23 0D C2 08 90 32 50 80 76
+Output:
+8050H: 37
+
+--------------------------------------------------------------------------------
+
+23. Find the largest element in a block of data.
+Statement: The length of the block is in memory location 8000H and the block itself starts from memory location 8001H. Store the maximum number in memory location 8050H.
+Input:
+8000H: 05 11 22 33 44 55
+Command:
+9001H: 3A 00 80 4F 21 01 80 3E 00 BE D2 0F 90 7E 23 0D C2 0A 90 32 50 80 76
+Output:
+8050H: 55
+
+--------------------------------------------------------------------------------
+
+24. Find smallest number in array.
+Statement: The length of the block is in memory location 8000H and block starts from memory location 8001H. Store the minimum number in memory location 8050H.
+Input:
+8000H: 05 44 22 11 55 33
+Command:
+9001H: 3A 00 80 4F 21 01 80 3E FF BE DA 0F 90 7E 23 0D C2 0A 90 32 50 80 76
+Output:
+8050H: 11
+
+--------------------------------------------------------------------------------
+
+25. Generate Fibonacci series upto 10th term.
+Statement: Generate the first 10 terms of the Fibonacci series starting at memory location 8050H.
+Input:
+8000H:
+Command:
+9001H: 21 50 80 0E 08 06 00 16 01 70 23 72 78 82 42 57 23 77 0D C2 0D 90 76
+Output:
+8050H: 00 01 01 02 03 05 08 0D 15 22
+
+--------------------------------------------------------------------------------
+
+26. Sort 10 numbers in ascending order in array.
+Statement: Sort 10 numbers stored starting at memory location 8000H in ascending order (copied/sorted to 8050H).
+Input:
+8000H: 09 05 01 08 03 07 02 06 04 0A
+Command:
+9001H: 21 00 80 11 50 80 0E 0A 7E 12 23 13 0D C2 09 90 0E 0A 0D 51 21 50 80 7E 23 BE DA 27 90 46 77 2B 70 23 15 C2 18 90 0D C2 14 90 76
+Output:
+8050H: 01 02 03 04 05 06 07 08 09 0A
+
+--------------------------------------------------------------------------------
+
+27. Sort numbers in descending order in array.
+Statement: Length of array is in memory location 8000H and elements start at 8001H. Sort them in descending order starting at 8050H.
+Input:
+8000H: 05 01 05 02 04 03
+Command:
+9001H: 3A 00 80 4F 21 01 80 11 50 80 7E 12 23 13 0D C2 0B 90 3A 00 80 4F 0D 51 21 50 80 7E 23 BE D2 2E 90 46 77 2B 70 23 15 C2 1F 90 0D C2 1B 90 76
+Output:
+8050H: 05 04 03 02 01
+
+--------------------------------------------------------------------------------
+
+28. Multiply two 8-bit numbers 43H & 07H.
+Statement: Multiply two 8-bit numbers 43H & 07H. Result is stored at address 8050H and 8051H.
+Input:
+8000H:
+Command:
+9001H: 21 00 00 16 00 1E 43 0E 07 19 0D C2 0A 90 22 50 80 76
+Output:
+8050H: D5 01
+
+--------------------------------------------------------------------------------
+
+29. Multiply two 8-bit numbers stored at address 8000H and 8001H.
+Statement: Multiply two 8-bit numbers stored at address 8000H and 8001H. Result is stored at address 8050H and 8051H.
+Input:
+8000H: 43 07
+Command:
+9001H: 2A 00 80 EB 4A 16 00 21 00 00 19 0D C2 0B 90 22 50 80 76
+Output:
+8050H: D5 01
