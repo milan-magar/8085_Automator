@@ -1,0 +1,612 @@
+8085 PROGRAMS (STANDARDIZED ADDRESSES: INPUT 8000H, PROGRAM 9001H, OUTPUT 8050H)
+================================================================================
+
+1. Program to add two 8-bit numbers.
+Statement: Add numbers from memory location 8000H & 8001H and store result in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8001H   // Load contents of memory location 8001H to accumulator
+MOV B,A     // Move contents of accumulator to B register
+LDA 8000H   // Load contents of memory location 8000H to accumulator
+ADD B       // Add contents of accumulator and B register
+STA 8050H   // Store contents of accumulator in memory location 8050H
+HLT         // Terminate the program
+
+Input:
+Memory Location   Data
+8000H             45H
+8001H             53H
+
+Output:
+Memory Location   Data
+8050H             98H
+
+--------------------------------------------------------------------------------
+
+2. Program to subtract two 8-bit numbers.
+Statement: Subtract numbers from memory location 8000H & 8001H and store result in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8001H   // Load contents of memory location 8001H to accumulator
+MOV B,A     // Move contents of accumulator to B register
+LDA 8000H   // Load contents of memory location 8000H to accumulator
+SUB B       // Subtract contents of B register from accumulator
+STA 8050H   // Store contents of accumulator in memory location 8050H
+HLT         // Terminate the program
+
+Input:
+Memory Location   Data
+8000H             65H
+8001H             53H
+
+Output:
+Memory Location   Data
+8050H             12H
+
+--------------------------------------------------------------------------------
+
+3. Program to find 1's complement of a number.
+Statement: Input number from memory location 8000H and store result in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8000H   // Load contents from memory location 8000H to accumulator
+CMA         // Complement contents of accumulator
+STA 8050H   // Store result in memory location 8050H
+HLT         // Terminate the program
+
+Input:
+Memory Location   Data
+8000H             12H
+
+Output:
+Memory Location   Data
+8050H             EDH
+
+--------------------------------------------------------------------------------
+
+4. Program to find 2's complement of a number.
+Statement: Input number from memory location 8000H and store result in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8000H   // Load contents from memory location 8000H to accumulator
+CMA         // Complement contents of accumulator
+ADI 01H     // Add 01H to the contents of accumulator
+STA 8050H   // Store result in memory location 8050H
+HLT         // Terminate the program
+
+Input:
+Memory Location   Data
+8000H             12H
+
+Output:
+Memory Location   Data
+8050H             EEH
+
+--------------------------------------------------------------------------------
+
+5. Program to right shift 8-bit numbers.
+Statement: Shift an eight-bit data four bits right. Assume data is in memory location 8000H. Store result in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8000H   // Load data from memory location 8000H to accumulator
+RAR         // Rotate accumulator 1-bit right
+RAR
+RAR
+RAR
+STA 8050H   // Store result in memory location 8050H
+HLT         // Terminate the program
+
+--------------------------------------------------------------------------------
+
+6. Program to left shift 8-bit numbers.
+Statement: Shift an eight-bit data four bits left. Assume data is in memory location 8000H. Store result in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8000H   // Load data from memory location 8000H to accumulator
+RAL         // Rotate accumulator 1-bit left
+RAL
+RAL
+RAL
+STA 8050H   // Store result in memory location 8050H
+HLT         // Terminate the program
+
+--------------------------------------------------------------------------------
+
+7. Program to add two 16-bit numbers.
+Statement: Add numbers 1124H & 2253H and store result in memory location 8050H & 8051H.
+
+// Program starts at 9001H
+LXI H,1124H // Load 16-bit data 1124H to HL pair
+LXI D,2253H // Load 16-bit data 2253H to DE pair
+MOV A,L     // Move contents of register L to Accumulator
+ADD E       // Add contents of Accumulator and E register
+MOV L,A     // Move contents of Accumulator to L register
+MOV A,H     // Move contents of register H to Accumulator
+ADC D       // Add contents of Accumulator and D register with carry
+MOV H,A     // Move contents of Accumulator to register H
+SHLD 8050H  // Store contents of HL pair in memory address 8050H & 8051H
+HLT         // Terminate the program
+
+Input:
+Register Pair   Data
+HL              1124H
+DE              2253H
+
+Output:
+Memory Location   Data
+8050H             77H
+8051H             33H
+
+--------------------------------------------------------------------------------
+
+8. Program to add two 16-bit numbers.
+Statement: Input first number from memory location 8000H & 8001H and second number from memory location 8002H & 8003H and store result in memory location 8050H & 8051H.
+
+// Program starts at 9001H
+LHLD 8002H  // Load 16-bit number from memory location 8002H & 8003H to HL pair
+XCHG        // Exchange contents of HL pair and DE pair
+LHLD 8000H  // Load 16-bit number from memory location 8000H & 8001H to HL pair
+MOV A,L     // Move contents of register L to Accumulator
+ADD E       // Add contents of Accumulator and E register
+MOV L,A     // Move contents of Accumulator to L register
+MOV A,H     // Move contents of register H to Accumulator
+ADC D       // Add contents of Accumulator and D register with carry
+MOV H,A     // Move contents of Accumulator to register H
+SHLD 8050H  // Store contents of HL pair in memory address 8050H & 8051H
+HLT         // Terminate the program
+
+Input:
+Memory Location   Data
+8000H             33H
+8001H             45H
+8002H             24H
+8003H             34H
+
+Output:
+Memory Location   Data
+8050H             57H
+8051H             79H
+
+--------------------------------------------------------------------------------
+
+9. Program to subtract two 16-bit numbers.
+Statement: Subtract number 1234H from 4897H and store result in memory location 8050H & 8051H.
+
+// Program starts at 9001H
+LXI H,4897H // Load 16-bit data 4897H to HL pair
+LXI D,1234H // Load 16-bit data 1234H to DE pair
+MOV A,L     // Move contents of register L to Accumulator
+SUB E       // Subtract contents of E register from Accumulator
+MOV L,A     // Move contents of Accumulator to L register
+MOV A,H     // Move contents of register H to Accumulator
+SBB D       // Subtract contents of D register from Accumulator with borrow
+MOV H,A     // Move contents of Accumulator to register H
+SHLD 8050H  // Store contents of HL pair in memory address 8050H & 8051H
+HLT         // Terminate the program
+
+Input:
+Register Pair   Data
+HL              4897H
+DE              1234H
+
+Output:
+Memory Location   Data
+8050H             63H
+8051H             36H
+
+--------------------------------------------------------------------------------
+
+10. Program to subtract two 16-bit numbers.
+Statement: Input first number from memory location 8000H & 8001H and second number from memory location 8002H & 8003H and store result in memory location 8050H & 8051H.
+
+// Program starts at 9001H
+LHLD 8002H  // Load 16-bit number from memory location 8002H & 8003H to HL pair
+XCHG        // Exchange contents of HL pair and DE pair
+LHLD 8000H  // Load 16-bit number from memory location 8000H & 8001H to HL pair
+MOV A,L     // Move contents of register L to Accumulator
+SUB E       // Subtract contents of E register from Accumulator
+MOV L,A     // Move contents of Accumulator to L register
+MOV A,H     // Move contents of register H to Accumulator
+SBB D       // Subtract contents of D register from Accumulator with borrow
+MOV H,A     // Move contents of Accumulator to register H
+SHLD 8050H  // Store contents of HL pair in memory address 8050H & 8051H
+HLT         // Terminate the program
+
+Input:
+Memory Location   Data
+8000H             78H
+8001H             45H
+8002H             24H
+8003H             34H
+
+Output:
+Memory Location   Data
+8050H             54H
+8051H             11H
+
+--------------------------------------------------------------------------------
+
+11. Program to multiply two 8-bit numbers.
+Statement: Multiply 06 and 03 and store result in memory location 8050H.
+
+// Program starts at 9001H
+MVI A,00H
+MVI B,06H
+MVI C,03H
+X: ADD B
+DCR C
+JNZ X
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+12. Program to divide two 8-bit numbers.
+Statement: Divide 08H and 03H and store quotient in memory location 8050H and remainder in memory location 8051H.
+
+// Program starts at 9001H
+MVI A,08H
+MVI B,03H
+MVI C,00H
+X: CMP B
+JC Y
+SUB B
+INR C
+JMP X
+Y: STA 8051H
+MOV A,C
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+13. Program to find greatest among two 8-bit numbers.
+Statement: Input numbers from memory location 8000H & 8001H and store greatest number in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8001H
+MOV B,A
+LDA 8000H
+CMP B
+JNC X
+MOV A,B
+X: STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+14. Program to find smallest among two 8-bit numbers.
+Statement: Input numbers from memory location 8000H & 8001H and store smallest number in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8001H
+MOV B,A
+LDA 8000H
+CMP B
+JC X
+MOV A,B
+X: STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+15. Program to find whether a number is odd or even.
+Statement: Input number from memory location 8000H and store result in 8050H.
+
+// Program starts at 9001H
+LDA 8000H
+ANI 01H
+JZ X
+MVI A,0DH
+JMP Y
+X: MVI A,0EH
+Y: STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+16. Program to count no. of 1's in given number.
+Statement: Input number from memory location 8000H and store result in 8050H.
+
+// Program starts at 9001H
+LDA 8000H
+MVI C,08H
+MVI B,00H
+X: RAR
+JNC Y
+INR B
+Y: DCR C
+JNZ X
+MOV A,B
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+17. Display number from 1 to 10.
+Statement: Store numbers from 1 to 10 starting at memory location 8050H.
+
+// Program starts at 9001H
+LXI H,8050H
+MVI B,01H
+MVI C,0AH
+X: MOV M,B
+INX H
+INR B
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+18. Find sum of numbers from 1 to 10.
+Statement: Store sum in memory location 8050H.
+
+// Program starts at 9001H
+MVI B,01H
+MVI C,0AH
+MVI A,00H
+X: ADD B
+INR B
+DCR C
+JNZ X
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+19. Display all odd numbers from 1 to 10.
+Statement: Store odd numbers starting at memory location 8050H.
+
+// Program starts at 9001H
+LXI H,8050H
+MVI B,01H
+MVI C,0AH
+X: MOV M,B
+INX H
+INR B
+INR B
+DCR C
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+20. Display all even numbers from 1 to 20.
+Statement: Store even numbers starting at memory location 8050H.
+
+// Program starts at 9001H
+LXI H,8050H
+MVI B,02H
+MVI C,14H
+X: MOV M,B
+INX H
+INR B
+INR B
+DCR C
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+21. Display all even numbers from 10 to 50.
+Statement: Store even numbers starting at memory location 8050H.
+
+// Program starts at 9001H
+LXI H,8050H
+MVI B,0AH
+MVI C,2AH
+X: MOV M,B
+INX H
+INR B
+INR B
+DCR C
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+22. Find sum of 10 numbers in array.
+Statement: Array starts at memory location 8000H and sum is stored at 8050H.
+
+// Program starts at 9001H
+LXI H,8000H
+MVI C,0AH
+MVI A,00H
+X: MOV B,M
+ADD B
+INX H
+DCR C
+JNZ X
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+23. Find the largest element in a block of data.
+Statement: The length of the block is in memory location 8000H and block itself starts from memory location 8001H. Store the maximum number in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8000H
+MOV C,A
+LXI H,8001H
+MVI A,00H
+X: CMP M
+JNC Y
+MOV A,M
+Y: INX H
+DCR C
+JNZ X
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+24. Find smallest number in array.
+Statement: The length of the block is in memory location 8000H and block starts from memory location 8001H. Store the minimum number in memory location 8050H.
+
+// Program starts at 9001H
+LDA 8000H
+MOV C,A
+LXI H,8001H
+MVI A,FFH
+X: CMP M
+JC Y
+MOV A,M
+Y: INX H
+DCR C
+JNZ X
+STA 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+25. Generate Fibonacci series upto 10th term.
+Statement: Store Fibonacci series starting at memory location 8050H.
+
+// Program starts at 9001H
+LXI H,8050H
+MVI C,08H
+MVI B,00H
+MVI D,01H
+MOV M,B
+INX H
+MOV M,D
+X: MOV A,B
+ADD D
+MOV B,D
+MOV D,A
+INX H
+MOV M,A
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+26. Sort 10 numbers in ascending order in array.
+Statement: Input numbers start at memory location 8000H. Sorted numbers are stored starting at 8050H.
+
+// Program starts at 9001H
+LXI H,8000H
+LXI D,8050H
+MVI C,0AH
+COPY: MOV A,M
+STAX D
+INX H
+INX D
+DCR C
+JNZ COPY
+
+MVI C,0AH
+DCR C
+X: MOV D,C
+LXI H,8050H
+Y: MOV A,M
+INX H
+CMP M
+JC Z
+MOV B,M
+MOV M,A
+DCX H
+MOV M,B
+INX H
+Z: DCR D
+JNZ Y
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+27. Sort numbers in descending order in array.
+Statement: Length of array is in memory location 8000H and elements start at 8001H. Sorted numbers are stored starting at 8050H.
+
+// Program starts at 9001H
+LDA 8000H
+MOV C,A
+LXI H,8001H
+LXI D,8050H
+COPY: MOV A,M
+STAX D
+INX H
+INX D
+DCR C
+JNZ COPY
+
+LDA 8000H
+MOV C,A
+DCR C
+X: MOV D,C
+LXI H,8050H
+Y: MOV A,M
+INX H
+CMP M
+JNC Z
+MOV B,M
+MOV M,A
+DCX H
+MOV M,B
+INX H
+Z: DCR D
+JNZ Y
+DCR C
+JNZ X
+HLT
+
+--------------------------------------------------------------------------------
+
+28. Multiply two 8-bit numbers 43H & 07H. Result is stored at address 8050H and 8051H.
+
+// Program starts at 9001H
+LXI H,0000H
+MVI D,00H
+MVI E,43H
+MVI C,07H
+X: DAD D     // Add HL and DE pair and assign value to HL
+DCR C
+JNZ X       // Jumps program counter to X if zero flag != 0
+SHLD 8050H  // Stores value of H at memory location 8051H and L at 8050H
+HLT
+
+--------------------------------------------------------------------------------
+
+29. Multiply two 8-bit numbers stored at address 8000H and 8001H. Result is stored at address 8050H and 8051H.
+
+Memory Address   Instruction   Comments
+9001             LHLD 8000     H <- 8001, L <- 8000
+9004             XCHG          H <-> D, L <-> E
+9005             MOV C,D       C <- D
+9006             MVI D,00      D <- 00
+9008             LXI H,0000    H <- 00, L <- 00
+900B             DAD D         HL <- HL + DE
+900C             DCR C         C <- C - 1
+900D             JNZ 900B      If Zero Flag != 0, goto 900B
+9010             SHLD 8050     H -> 8051, L -> 8050
+9013             HLT
+
+Alternative Mnemonic Version (Starting at 9001H):
+LDA 8000H
+MOV E,A
+LDA 8001H
+MOV C,A
+MVI D,00H
+LXI H,0000H
+X: DAD D
+DCR C
+JNZ X
+SHLD 8050H
+HLT
+
+Input Data:
+Memory Address   Data
+8000             43
+8001             07
+
+Output Data:
+Memory Address   Data
+8050             D5
+8051             01
